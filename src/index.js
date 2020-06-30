@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function getDogs(){
         return fetch('http://localhost:3000/dogs')
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(dog_obj => renderDogs(dog_obj))
         
     }
 
@@ -17,36 +17,25 @@ document.addEventListener('DOMContentLoaded', () => {
             const table = document.querySelector('#table-body')
 
             const tableRow = document.createElement('tr')
-            tableRow.dataset.id = q.id
+            tableRow.id = q.id
 
             const name = document.createElement('td')
             name.innerText = q.name
+        // name.classList = add('name')
 
             const sex = document.createElement('td')
             sex.innerText = q.id
-            sex.classList.add('sex')
+            // sex.classList.add('sex')
 
             const breed = document.createElement('td')
-            
+            breed.innerHTML = q.breed
+            // breed.classList.add('breed')
 
-
-
-
-
-
+            tableRow.append(name, breed, sex)
+            table.append(tableRow)
 
         }
-
-        
-      
-        
-
     }
-
-
-
-
-
 
     getDogs()
 
